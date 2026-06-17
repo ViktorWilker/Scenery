@@ -32,7 +32,7 @@ Built with Jetpack Compose and the Gemini API.
 |---|---|
 | UI | Jetpack Compose |
 | Audio | MediaPlayer |
-| AI | Gemini 1.5 Flash 8B |
+| AI | Gemini 2.5 Flash 8B |
 | HTTP | Retrofit + Moshi |
 | Architecture | ViewModel + StateFlow |
 
