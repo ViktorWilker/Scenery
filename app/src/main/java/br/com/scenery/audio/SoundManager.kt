@@ -1,23 +1,23 @@
 package br.com.scenery.audio
 
-import android.content.Context
 import android.media.MediaPlayer
-import br.com.scenery.data.local.SoundAssets
 import br.com.scenery.data.model.SoundLayer
 
-class SoundManager(context: Context) {
+class SoundManager {
 
-    private val ctx = context.applicationContext
     private val activePlayers = mutableMapOf<String, MediaPlayer>()
 
     fun play(layers: List<SoundLayer>) {
         stopAll()
         layers.forEach { layer ->
-            val resId = SoundAssets.map[layer.id] ?: return@forEach
-            val player = MediaPlayer.create(ctx, resId).apply {
-                isLooping = true
-                setVolume(layer.volume, layer.volume)
-                start()
+            val player = MediaPlayer().apply {
+                setDataSource(layer.previewUrl)
+                setOnPreparedListener {
+                    setVolume(layer.volume, layer.volume)
+                    isLooping = true
+                    start()
+                }
+                prepareAsync()
             }
             activePlayers[layer.id] = player
         }
@@ -28,11 +28,11 @@ class SoundManager(context: Context) {
     }
 
     fun pause() {
-        activePlayers.values.forEach { it.pause() }
+        activePlayers.values.forEach { if (it.isPlaying) it.pause() }
     }
 
     fun resume() {
-        activePlayers.values.forEach { it.start() }
+        activePlayers.values.forEach { if (!it.isPlaying) it.start() }
     }
 
     fun stopAll() {

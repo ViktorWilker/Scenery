@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.scenery.audio.SoundManager
 import br.com.scenery.data.model.SceneResponse
-import br.com.scenery.data.remote.GeminiRepository
+import br.com.scenery.data.remote.SceneRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,8 +14,8 @@ import kotlinx.coroutines.launch
 
 class SceneViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = GeminiRepository()
-    private val soundManager = SoundManager(application)
+    private val repository = SceneRepository()
+    private val soundManager = SoundManager()
 
     sealed class UiState {
         object Idle : UiState()
