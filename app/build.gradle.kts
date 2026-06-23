@@ -92,6 +92,8 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
     debugImplementation("androidx.compose.ui:ui-tooling")
 
+    implementation("androidx.compose.material:material-icons-extended:1.6.8")
     implementation("io.coil-kt:coil-compose:2.6.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
 }

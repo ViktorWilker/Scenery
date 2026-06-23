@@ -3,10 +3,12 @@ package br.com.scenery.data.remote
 import br.com.scenery.data.model.SceneResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.POST
+import java.util.concurrent.TimeUnit
 
 interface SceneryApi {
     @POST("scene")
@@ -21,9 +23,16 @@ class SceneRepository {
         .add(KotlinJsonAdapterFactory())
         .build()
 
+    private val client = OkHttpClient.Builder()
+        .connectTimeout(60, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        .writeTimeout(60, TimeUnit.SECONDS)
+        .build()
+
     private val api = Retrofit.Builder()
         .baseUrl("https://scenery-backend.onrender.com/")
         .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .client(client)
         .build()
         .create(SceneryApi::class.java)
 

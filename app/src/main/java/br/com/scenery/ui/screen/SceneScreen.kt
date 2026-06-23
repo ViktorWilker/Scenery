@@ -15,6 +15,9 @@ import br.com.scenery.data.model.SceneResponse
 import br.com.scenery.data.model.SoundLayer
 import br.com.scenery.ui.theme.*
 import br.com.scenery.viewmodel.SceneViewModel
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Pause
 
 private val timerOptions = listOf(
     "25 min" to 25,
@@ -75,7 +78,6 @@ fun SceneScreen(
 
         HorizontalDivider(color = Border)
 
-
         LazyColumn(
             modifier = Modifier.weight(1f),
             contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp),
@@ -131,9 +133,10 @@ fun SceneScreen(
                         contentColor = Surface
                     )
                 ) {
-                    Text(
-                        if (isPlaying) "⏸" else "▶",
-                        fontSize = 18.sp
+                    Icon(
+                        imageVector = if (isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
+                        contentDescription = if (isPlaying) "Pausar" else "Reproduzir",
+                        modifier = Modifier.size(22.dp)
                     )
                 }
 

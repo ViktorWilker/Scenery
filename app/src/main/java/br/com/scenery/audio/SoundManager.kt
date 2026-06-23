@@ -10,6 +10,11 @@ class SoundManager {
     fun play(layers: List<SoundLayer>) {
         stopAll()
         layers.forEach { layer ->
+            android.util.Log.d("SoundManager", "Playing: ${layer.id} -> ${layer.previewUrl}")
+            if (layer.previewUrl.isBlank()) {
+                android.util.Log.e("SoundManager", "Empty URL for ${layer.id}, skipping")
+                return@forEach
+            }
             val player = MediaPlayer().apply {
                 setDataSource(layer.previewUrl)
                 setOnPreparedListener {
@@ -22,6 +27,7 @@ class SoundManager {
             activePlayers[layer.id] = player
         }
     }
+
 
     fun setVolume(id: String, volume: Float) {
         activePlayers[id]?.setVolume(volume, volume)
@@ -37,11 +43,16 @@ class SoundManager {
 
     fun stopAll() {
         activePlayers.values.forEach {
-            it.stop()
-            it.release()
+            try {
+                it.stop()
+            } catch (e: IllegalStateException) {
+            } finally {
+                it.release()
+            }
         }
         activePlayers.clear()
     }
+
 
     fun release() {
         stopAll()
