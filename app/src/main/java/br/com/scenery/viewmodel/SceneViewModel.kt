@@ -15,7 +15,10 @@ import kotlinx.coroutines.launch
 class SceneViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = SceneRepository()
-    private val soundManager = SoundManager()
+    private val soundManager =
+        SoundManager(
+            getApplication()
+        )
 
     sealed class UiState {
         object Idle : UiState()

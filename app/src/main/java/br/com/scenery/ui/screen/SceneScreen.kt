@@ -54,7 +54,7 @@ fun SceneScreen(
             Text(
                 text = "CENA ATIVA",
                 style = MaterialTheme.typography.labelSmall,
-                color = TextSecondary,
+                color = Accent,
                 letterSpacing = 2.sp
             )
 
@@ -129,7 +129,7 @@ fun SceneScreen(
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = TextPrimary,
+                        containerColor = Accent,
                         contentColor = Surface
                     )
                 ) {
@@ -174,12 +174,12 @@ fun SceneScreen(
                         shape = RoundedCornerShape(8.dp),
                         contentPadding = PaddingValues(0.dp),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = if (isSelected) TextPrimary else Surface,
+                            containerColor = if (isSelected) Accent  else Surface,
                             contentColor = if (isSelected) Surface else TextSecondary
                         ),
                         border = ButtonDefaults.outlinedButtonBorder.copy(
                             brush = androidx.compose.ui.graphics.SolidColor(
-                                if (isSelected) TextPrimary else Border
+                                if (isSelected) Accent  else Border
                             )
                         )
                     ) {
@@ -200,9 +200,9 @@ private fun LayerCard(
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Surface),
+        colors = CardDefaults.cardColors(containerColor = SurfaceWarm),
         border = CardDefaults.outlinedCardBorder().copy(
-            brush = androidx.compose.ui.graphics.SolidColor(Border)
+            brush = androidx.compose.ui.graphics.SolidColor(AccentLight)
         )
     ) {
         Column(modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp)) {
@@ -230,9 +230,9 @@ private fun LayerCard(
                 onValueChange = onVolumeChange,
                 modifier = Modifier.fillMaxWidth(),
                 colors = SliderDefaults.colors(
-                    thumbColor = TextPrimary,
-                    activeTrackColor = TextPrimary,
-                    inactiveTrackColor = Border
+                    thumbColor = Accent,
+                    activeTrackColor = Accent,
+                    inactiveTrackColor = AccentLight
                 )
             )
         }

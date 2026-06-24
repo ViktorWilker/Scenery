@@ -87,7 +87,7 @@ fun PromptScreen(
         Text(
             text = "SCENERY",
             style = MaterialTheme.typography.labelSmall,
-            color = TextSecondary,
+            color = Accent,
             letterSpacing = 2.sp,
             modifier = Modifier
                 .alpha(labelAlpha)
@@ -135,10 +135,10 @@ fun PromptScreen(
             textStyle = MaterialTheme.typography.bodyLarge.copy(color = TextPrimary),
             shape = RoundedCornerShape(16.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = TextPrimary,
+                focusedBorderColor = Accent,
                 unfocusedBorderColor = Border,
                 focusedContainerColor = Surface,
-                unfocusedContainerColor = Surface
+                unfocusedContainerColor = SurfaceWarm
             ),
             supportingText = {
                 Text(
@@ -170,10 +170,10 @@ fun PromptScreen(
                     shape = RoundedCornerShape(20.dp),
                     border = SuggestionChipDefaults.suggestionChipBorder(
                         enabled = true,
-                        borderColor = Border
+                        borderColor = AccentLight
                     ),
                     colors = SuggestionChipDefaults.suggestionChipColors(
-                        containerColor = Surface
+                        containerColor = SurfaceWarm
                     )
                 )
             }
@@ -200,10 +200,10 @@ fun PromptScreen(
                 .offset(y = buttonOffset.dp),
             shape = RoundedCornerShape(14.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = TextPrimary,
+                containerColor = Accent,
                 contentColor = Surface,
-                disabledContainerColor = Border,
-                disabledContentColor = TextSecondary
+                disabledContainerColor = AccentLight,
+                disabledContentColor = Surface
             )
         ) {
             AnimatedContent(

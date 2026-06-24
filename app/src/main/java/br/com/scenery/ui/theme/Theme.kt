@@ -11,9 +11,10 @@ private val SceneryColorScheme = lightColorScheme(
     onSurface = TextPrimary,
     primary = Accent,
     onPrimary = Surface,
+    secondary = AccentMuted,
+    onSecondary = Surface,
     outline = Border
 )
-
 @Composable
 fun SceneryTheme(content: @Composable () -> Unit) {
     MaterialTheme(
